@@ -189,7 +189,7 @@ function showResults() {
       <p>Your score is ${score} out of ${questions.length}</p>
       <button id="try-again" onclick="window.location.href='index.html'";">Try Again</button>
   `;
-  localStorage.setItem('quizScore', score);
+  localStorage.setItem('quizScore', score); // storing score in localStorage 
 }
 
 // loadQuestion();
