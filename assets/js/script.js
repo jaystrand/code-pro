@@ -1,7 +1,7 @@
 const htmlATag = document.querySelector('#html-a-tag')
 const cssATag = document.querySelector('#css-a-tag')
 const jsATag = document.querySelector('#js-a-tag')
-
+const quizContainerMain = document.querySelector('.quiz-container')
 
 
 // CSS QUESTIONS //
@@ -133,8 +133,8 @@ const jsQuestions = [
   },
   {
     question: "What is the correct syntax for referring to an external script called 'script.js'?",
-    answers: ["<script href='script.js'>", "<script src='script.js'>", "<script name='script.js'>", "<script file='script.js'>"],
-    correct: "<script src='script.js'>"
+    answers: ["&ltscript href='script.js&gt", "&ltscript src='script.js&gt", "&ltscript name='script.js&gt", "&ltscript file='script.js&gt"],
+    correct: "&ltscript src='script.js&gt"
   },
   {
     question: "How do you create a function in JavaScript?",
@@ -291,6 +291,8 @@ function checkAnswer() {
 }
 
 function showResults() {
+
+  lastScoreRecorded();
   quizContainer.innerHTML = `
       <h2>Quiz Complete!</h2>
       <p>Your score is ${score} out of ${questions.length}</p>
@@ -298,22 +300,19 @@ function showResults() {
   `;
   localStorage.setItem('quizScore', score); // storing score in localStorage 
 }
+ 
+// need a function to print the last score
+function lastScoreRecorded(){
+  let lastScore = localStorage.getItem('quizScore');
+  console.log(quizContainerMain)
+ quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
+  console.log(`Last score ${lastScore}`)
+}
 
-// loadQuestion();
- //edited
-  
   
 });
 
 
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-  
-
-  
-//   console.log(choice)
-  
-  
-// });
 
