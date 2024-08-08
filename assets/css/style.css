@@ -1,62 +1,72 @@
-:root{
-  --dark-blue :  #1e5a99;
+:root {
+  --dark-blue: #1e5a99;
   --background-button: #60c5a8;
 }
 
 body {
-  background-color: #f7f7f7;
-  font-family: Arial, sans-serif;
+
+  background-image: url(https://wallpaperaccess.com/full/5277922.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
-header{
+
+header {
   text-align: center;
-  color:  #1e5a99;
+  color: #3fff00;
 }
+
 /* classes */
 .card {
-   margin-top: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background-color: #60c5a8;
-    max-width: 300px;
-    
+  margin-top: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fdd5b1;
+  max-width: 300px;
+
 }
+
 .card a {
   padding: 40px;
-  
+
   text-decoration: none;
   font-size: xx-large;
-  color: #1e5a99;
+  color: black;
 }
-.container{
+
+.container {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.quiz-heading{
+
+.quiz-heading {
   text-align: center;
-  color: #266db9;
+  color: #3fff00;
 }
-.quiz-container{
-  
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.quiz-container {
+
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffebcd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
 
 /* ids */
 #sub-heading {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 100px;
   text-decoration: underline;
-  
-  color: #266db9;
+
+  color: #3fff00;
 }
-#try-again{
+
+#try-again {
   text-align: center;
   font-size: larger;
   color: #266db9;
