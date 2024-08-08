@@ -286,6 +286,10 @@ function checkAnswer() {
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
       score++;
       console.log(score)
+  }else{
+    const label = document.createElement('label');
+  label.textContent = 'Wrong Answer'
+  
   }
   currentQuestionIndex++;
   loadQuestion();
@@ -293,16 +297,17 @@ function checkAnswer() {
 
 function showResults() {
 
-  lastScoreRecorded();
+  lastScoreRecorded();// calling the lastScoreRecorded function
+
   quizContainer.innerHTML = `
-      <h2>Quiz Complete!</h2>
+      <h3>Quiz Complete!</h3>
       <p>Your score is ${score} out of ${questions.length}</p>
       <button id="try-again" onclick="window.location.href='index.html'";">Try Again</button>
   `;
   localStorage.setItem('quizScore', score); // storing score in localStorage 
 }
  
-// need a function to print the last score
+// A function to print the last score
 function lastScoreRecorded(){
   let lastScore = localStorage.getItem('quizScore');
   console.log(quizContainerMain)
@@ -313,7 +318,7 @@ function lastScoreRecorded(){
   
 });
 
-//disable the browser back arrow when in quiz.html page
+//function to disable the browser back arrow when in quiz.html page
 function disableBackArrow(){
   history.pushState(null, null, location.href);
     window.onpopstate = function () {
