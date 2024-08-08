@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
   }
   function loadQuestion() {
+    disableBackArrow(); // calling the disablebackArrow function()
     if (currentQuestionIndex >= questions.length) {
         showResults();
         return;
@@ -312,6 +313,13 @@ function lastScoreRecorded(){
   
 });
 
+//disable the browser back arrow when in quiz.html page
+function disableBackArrow(){
+  history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+}
 
 
 
