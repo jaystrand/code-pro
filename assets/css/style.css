@@ -34,7 +34,7 @@ h2::before
   position: absolute;
   top: 175px;
   left: 600px;
-  width: 5%;
+  width: 8%;
   height: 10%;
   color:#fdd5b1;
   -webkit-text-stroke: .02vw red;
@@ -51,7 +51,7 @@ h2::before
   }
   70%,90%
   {
-    width: 15%;
+    width: 12%;
   }
 }
 
@@ -102,7 +102,7 @@ h2::before
   margin-top: 100px;
   text-decoration: underline;
 
-  color: #3fff00;
+  color: #fdd5b1;
 }
 
 #try-again {
