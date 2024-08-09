@@ -175,7 +175,7 @@ const jsQuestions = [
 
 
 
-let currentQuestionIndex = 0;
+let currentQuestionIndex = Math.floor(Math.random()*10); //Random index generator
 let score = 0;
 let questions=[];
 
