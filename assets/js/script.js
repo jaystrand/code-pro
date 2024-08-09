@@ -1,7 +1,7 @@
 const htmlATag = document.querySelector('#html-a-tag')
 const cssATag = document.querySelector('#css-a-tag')
 const jsATag = document.querySelector('#js-a-tag')
-
+const quizContainerMain = document.querySelector('.quiz-container')
 
 
 // CSS QUESTIONS //
@@ -133,8 +133,8 @@ const jsQuestions = [
   },
   {
     question: "What is the correct syntax for referring to an external script called 'script.js'?",
-    answers: ["<script href='script.js'>", "<script src='script.js'>", "<script name='script.js'>", "<script file='script.js'>"],
-    correct: "<script src='script.js'>"
+    answers: ["&ltscript href='script.js&gt", "&ltscript src='script.js&gt", "&ltscript name='script.js&gt", "&ltscript file='script.js&gt"],
+    correct: "&ltscript src='script.js&gt"
   },
   {
     question: "How do you create a function in JavaScript?",
@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
   }
   function loadQuestion() {
+    disableBackArrow(); // calling the disablebackArrow function()
     if (currentQuestionIndex >= questions.length) {
         showResults();
         return;
@@ -285,35 +286,46 @@ function checkAnswer() {
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
       score++;
       console.log(score)
+  }else{
+    const label = document.createElement('label');
+  label.textContent = 'Wrong Answer'
+  
   }
   currentQuestionIndex++;
   loadQuestion();
 }
 
 function showResults() {
+
+  lastScoreRecorded();// calling the lastScoreRecorded function
+
   quizContainer.innerHTML = `
-      <h2>Quiz Complete!</h2>
+      <h3>Quiz Complete!</h3>
       <p>Your score is ${score} out of ${questions.length}</p>
       <button id="try-again" onclick="window.location.href='index.html'";">Try Again</button>
   `;
   localStorage.setItem('quizScore', score); // storing score in localStorage 
 }
+ 
+// A function to print the last score
+function lastScoreRecorded(){
+  let lastScore = localStorage.getItem('quizScore');
+  console.log(quizContainerMain)
+ quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
+  console.log(`Last score ${lastScore}`)
+}
 
-// loadQuestion();
- //edited
-  
   
 });
 
+//function to disable the browser back arrow when in quiz.html page
+function disableBackArrow(){
+  history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+}
 
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-  
-
-  
-//   console.log(choice)
-  
-  
-// });
 
