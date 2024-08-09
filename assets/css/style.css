@@ -32,7 +32,7 @@ h2::before
 {
   content: attr(data-text);
   position: absolute;
-  top: 175px;
+  top: 177px;
   left: 600px;
   width: 8%;
   height: 10%;
