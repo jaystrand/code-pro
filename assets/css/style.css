@@ -34,7 +34,7 @@ h2::before
   position: absolute;
   top: 177px;
   left: 600px;
-  width: 5%;
+  width: 8%;
   height: 10%;
   color:#fdd5b1;
   -webkit-text-stroke: .02vw red;
@@ -51,7 +51,7 @@ h2::before
   }
   70%,90%
   {
-    width: 15%;
+    width: 12%;
   }
 }
 
@@ -102,22 +102,22 @@ h2::before
   margin-top: 100px;
   text-decoration: underline;
 
-  color:#ffebcd;
+  color: #fdd5b1;
 }
 
 #try-again {
   text-align: center;
   font-size: larger;
-  color: #266db9;
-  background-color: #60c5a8;
+  color: black;
+  background-color: red;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
-  border: #60c5a8;
+  border: black;
   border-radius: 10px;
   padding: 10px;
 }
 #submit-button{
-  color: #266db9;
-  background-color: #60c5a8;
+  color: black;
+  background-color: green;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
   border: #60c5a8;
   border-radius: 10px;
