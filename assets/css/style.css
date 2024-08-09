@@ -108,10 +108,10 @@ h2::before
 #try-again {
   text-align: center;
   font-size: larger;
-  color: #266db9;
-  background-color: #60c5a8;
+  color: red;
+  background-color: black;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
-  border: #60c5a8;
+  border: black;
   border-radius: 10px;
   padding: 10px;
 }
