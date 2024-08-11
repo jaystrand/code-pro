@@ -1,12 +1,10 @@
+// Selectors for navigation links //
 const htmlATag = document.querySelector('#html-a-tag')
 const cssATag = document.querySelector('#css-a-tag')
 const jsATag = document.querySelector('#js-a-tag')
 const quizContainerMain = document.querySelector('.quiz-container')
 
-
 // CSS QUESTIONS //
-
-
 const cssQuestions = [
   {
     question: "What does CSS stand for?",
@@ -60,9 +58,7 @@ const cssQuestions = [
   }
 ];
 
-  
 // HTML QUESTIONS //
-
 const htmlQuestions = [
   {
     question: "What is HTML?",
@@ -116,10 +112,7 @@ const htmlQuestions = [
   }
 ];
 
-
-
 // JAVASCRIPT QUESTIONS //
-
 const jsQuestions = [
   {
     question: "Which language is used for web development?",
@@ -173,40 +166,45 @@ const jsQuestions = [
   }
 ];
 
-
-
-let currentQuestionIndex = Math.floor(Math.random()*10); //Random index generator
+// Random index generator for question selection //
+let currentQuestionIndex = Math.floor(Math.random() * 10); 
 let score = 0;
-let questions=[];
+let questions= [];
 
+// Event listener for DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Select quiz container and URL parameters
   const quizContainer = document.getElementById('quiz-container');
   const urlParams = new URLSearchParams(window.location.search);
   const choice = urlParams.get('choice');
 
+
+  // Display chosen quiz heading based on URL parameter
   if (choice === 'HTML') {
     console.log(choice)
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen HTML Quiz";
-    document.body.appendChild(h3);
-   
+    document.body.appendChild(h3); 
   }
+
   if (choice === 'CSS') {
     console.log(choice);
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen CSS Quiz";
     document.body.appendChild(h3);
-    
   }
+
    if(choice === 'JS'){
     console.log(choice)
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
-    h3.textContent = "You have chosen JS Quiz";
+    h3.textContent = "You have chosen JavaScript Quiz";
     document.body.appendChild(h3);
   }
+
   if (htmlATag) {
     htmlATag.addEventListener('click', function(event) {
       event.preventDefault();
@@ -214,14 +212,15 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = nextPageHtmlUrl;
     });
   } 
+
    if(cssATag){
      cssATag.addEventListener('click',function(event){
       event.preventDefault()
       const nextPageCssUrl = 'quiz.html?choice=CSS'
       window.location.href = nextPageCssUrl;
     })
-  
   }
+
    if(jsATag){
    jsATag.addEventListener('click',function(event){
    event.preventDefault() 
@@ -229,9 +228,8 @@ document.addEventListener('DOMContentLoaded', function() {
    window.location.href = nextPageJsUrl;
   })
   }
-  //edited
 
-
+  // Edited section to handle quiz questions based on choice
   if (choice) {
     switch (choice) {
       case 'HTML':
@@ -244,23 +242,27 @@ document.addEventListener('DOMContentLoaded', function() {
         questions = jsQuestions;
         break;
     }
-    loadQuestion();
+    loadQuestion(); // Load the first question
   }
 
-  function decodeHtmlEntities(text) { // to decode the <> entities to compare 
+  // Function to decode HTML entities for comparison
+  function decodeHtmlEntities(text) { 
     const textarea = document.createElement('textarea');
     textarea.innerHTML = text;
     console.log(text)
     console.log(textarea.value)
-    return textarea.value;
-    
+    return textarea.value; 
   }
+
+  // Function to load and display the current question
   function loadQuestion() {
-    disableBackArrow(); // calling the disablebackArrow function()
+    disableBackArrow(); // Disable the back arrow to prevent navigation
+    
+    // Check if all questions have been answered
     if (currentQuestionIndex >= questions.length) {
-        showResults();
         return;
     }
+
     const questionData = questions[currentQuestionIndex];
     quizContainer.innerHTML = `
         <div class="question">
@@ -274,36 +276,40 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <button id="submit-button">Submit</button>
     `;
+
+    // Add event listener to the submit button
     document.getElementById('submit-button').addEventListener('click', checkAnswer);
 }
+
+// Function to check the selected answer and update the score
 function checkAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
   if (!selectedAnswer) {
-      alert('Please select an answer!');
-      return;
+    $('#warningModal').modal('show'); // Show the Bootstrap modal if no answer is selected
+    return;
   }
+  
   const correctAnswer = decodeHtmlEntities(questions[currentQuestionIndex].correct);
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
-      score++;
-      console.log(score)
-  }else{
-    const label = document.createElement('label');
-  label.textContent = 'Wrong Answer'
-  
+    score++; // Increment score if the answer is correct
   }
-  currentQuestionIndex++;
-  loadQuestion();
+  
+  currentQuestionIndex++; // Move to the next question
+  loadQuestion(); // Load the next question
 }
 
+// Function to display the final results
 function showResults() {
-
-  lastScoreRecorded();// calling the lastScoreRecorded function
+  lastScoreRecorded(); // Display the last score
 
   quizContainer.innerHTML = `
       <h3>Quiz Complete!</h3>
       <p>Your score is ${score} out of ${questions.length}</p>
       <button id="try-again" onclick="window.location.href='index.html'";">Try Again</button>
   `;
+
+  // Store the score in localStorage
   localStorage.setItem('quizScore', score); // storing score in localStorage 
 }
  
@@ -311,21 +317,17 @@ function showResults() {
 function lastScoreRecorded(){
   let lastScore = localStorage.getItem('quizScore');
   console.log(quizContainerMain)
+
+// Insert last score into the quiz container
  quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
   console.log(`Last score ${lastScore}`)
 }
-
-  
 });
 
-//function to disable the browser back arrow when in quiz.html page
+// Function to disable the browser back arrow when in quiz.html page
 function disableBackArrow(){
   history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     };
 }
-
-
-
-
