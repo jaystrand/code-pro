@@ -255,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const textarea = document.createElement('textarea');
     textarea.innerHTML = text;
     console.log(text)
-    //console.log(textarea.value)
     return textarea.value;
     
   }
@@ -297,7 +296,7 @@ function checkAnswer() {
     document.querySelector('#modal-close-btn').addEventListener('click', function(){
       warningModal.hide();
     })
-    warningModal.show();//modal('show'); // Show the Bootstrap modal if no answer is selected
+    warningModal.show(); // Show the Bootstrap modal if no answer is selected
     return;
   }
   
@@ -305,8 +304,7 @@ function checkAnswer() {
   const correctAnswer = decodeHtmlEntities(questions[currentQuestionIndex].correct); // Decode the correct answer//
 
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
-    score++; // Increment score if the answer is correct
-      score++;
+       score++; // Increment score if the answer is correct
       console.log(score)
       // label.textContent= ''
   }else{
@@ -314,18 +312,13 @@ function checkAnswer() {
   
   }
   
-  currentQuestionIndex++; // Move to the next question
-  loadQuestion(); // Load the next question
-  
    currentQuestionIndex++;
    localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
   loadQuestion(); // Load the next question using loadQuestion()//
 }
 
-// Function to display the final results
 //function to show results of the test//
 function showResults() {
-  lastScoreRecorded(); // Display the last score
 
   lastScoreRecorded();// Call the lastScoreRecorded function inorder to diplay the last score//
 
