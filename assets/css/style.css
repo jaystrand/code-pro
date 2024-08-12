@@ -31,6 +31,7 @@ h2::before {
   top: 177px;
   left: 600px;
   width: 8%;
+  width: 8%;
   height: 10%;
   color: #fdd5b1;
   -webkit-text-stroke: 0.02vw red;
@@ -43,7 +44,8 @@ h2::before {
   0%, 50%, 100% {
     width: 0;
   }
-  70%, 90% {
+  70%,90%
+  {
     width: 12%;
   }
 }
@@ -93,6 +95,7 @@ h2::before {
   text-align: center;
   margin-top: 100px;
   text-decoration: underline;
+
   color: #fdd5b1;
 }
 
@@ -102,14 +105,16 @@ h2::before {
   font-size: larger;
   color: black;
   background-color: red;
+  color: black;
+  background-color: red;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
+  border: black;
   border: black;
   border-radius: 10px;
   padding: 10px;
 }
-
-#submit-button {
-  color: black;
+#submit-button{
+  color: red;
   background-color: green;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
   border: #60c5a8;
