@@ -5,7 +5,6 @@ const cssATag = document.querySelector('#css-a-tag')
 const jsATag = document.querySelector('#js-a-tag')
 const quizContainerMain = document.querySelector('.quiz-container')
 
-
 // CSS QUESTIONS //
 
 const cssQuestions = [
@@ -61,9 +60,7 @@ const cssQuestions = [
   }
 ];
 
-  
 // HTML QUESTIONS //
-
 const htmlQuestions = [
   {
     question: "What is HTML?",
@@ -117,10 +114,7 @@ const htmlQuestions = [
   }
 ];
 
-
-
 // JAVASCRIPT QUESTIONS //
-
 const jsQuestions = [
   {
     question: "Which language is used for web development?",
@@ -196,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     quizContainerMain.appendChild(h3);
    
   }
+
   if (choice === 'CSS') {
     console.log(choice);
     let h3 = document.createElement('h3');
@@ -204,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
     quizContainerMain.appendChild(h3);
     
   }
+
    if(choice === 'JS'){
     console.log(choice)
     let h3 = document.createElement('h3');
@@ -220,14 +216,15 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = nextPageHtmlUrl;
     });
   } 
+
    if(cssATag){
      cssATag.addEventListener('click',function(event){
       event.preventDefault()
       const nextPageCssUrl = 'quiz.html?choice=CSS'
       window.location.href = nextPageCssUrl;
     })
-  
   }
+
    if(jsATag){
    jsATag.addEventListener('click',function(event){
    event.preventDefault() 
@@ -294,15 +291,17 @@ document.addEventListener('DOMContentLoaded', function() {
 //function to check if selected answer is write or wrong//
 function checkAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
   if (!selectedAnswer) {
-      alert('Please select an answer!'); // Alert if no answer is selected//
-      return;
+    $('#warningModal').modal('show'); // Show the Bootstrap modal if no answer is selected
+    return;
   }
-  // const label = document.createElement('label');
-  // label.textContent= ''
+  
+  
   const correctAnswer = decodeHtmlEntities(questions[currentQuestionIndex].correct); // Decode the correct answer//
 
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
+    score++; // Increment score if the answer is correct
       score++;
       console.log(score)
       // label.textContent= ''
@@ -311,13 +310,18 @@ function checkAnswer() {
   
   }
   
+  currentQuestionIndex++; // Move to the next question
+  loadQuestion(); // Load the next question
+  
    currentQuestionIndex++;
    localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
   loadQuestion(); // Load the next question using loadQuestion()//
 }
 
+// Function to display the final results
 //function to show results of the test//
 function showResults() {
+  lastScoreRecorded(); // Display the last score
 
   lastScoreRecorded();// Call the lastScoreRecorded function inorder to diplay the last score//
 
@@ -334,11 +338,11 @@ function showResults() {
 function lastScoreRecorded(){
   let lastScore = localStorage.getItem('quizScore');
   console.log(quizContainerMain)
+
+// Insert last score into the quiz container
  quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
   console.log(`Last score ${lastScore}`)
 }
-
-  
 });
 
 //function to disable the browser back arrow when in quiz.html page //
@@ -348,7 +352,3 @@ function disableBackArrow(){
         history.go(1);
     };
 }
-
-
-
-

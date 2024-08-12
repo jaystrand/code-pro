@@ -5,28 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Pro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Link to custom stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <!-- Bootstrap CSS for styling and modal functionality -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- jQuery library required for Bootstrap modal functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
+    <!-- Popper.js library required for Bootstrap tooltips and popovers -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    
+    <!-- Bootstrap JS library for modal functionality -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <header>
-       <h1>Welcome to Code Pro</h1> 
+        <!-- Main heading of the page -->
+        <h1>Welcome to Code Pro</h1>
     </header>
+
+    <!-- Sub-heading for topic selection -->
     <h2 id="sub-heading">Select your topic to be tested</h2>
+
     <main class="container">
-    
-        <!-- <h3 id="sub-heading">Select your topic to be tested</h3> -->
+        <!-- Card for HTML topic selection -->
         <div class="card">
-           <a href="quiz.html" id="html-a-tag">HTML</a>
+            <a href="quiz.html" id="html-a-tag">HTML</a>
         </div>
-        <div class="card">  
-           <a href="quiz.html" id="css-a-tag">CSS</a>
-        </div> 
-        <div class="card">  
-           <a href="quiz.html" id="js-a-tag">JavaScript</a>
+        
+        <!-- Card for CSS topic selection -->
+        <div class="card">
+            <a href="quiz.html" id="css-a-tag">CSS</a>
         </div>
-     
+        
+        <!-- Card for JavaScript topic selection -->
+        <div class="card">
+            <a href="quiz.html" id="js-a-tag">JavaScript</a>
+        </div>
     </main>
     <footer><p>&copy; 2024 CodePro. All rights reserved.</p></footer>
 
