@@ -1,11 +1,11 @@
+// Selecting the HTML, CSS, and JS quiz navigation links and the main quiz container //
+
 const htmlATag = document.querySelector('#html-a-tag')
 const cssATag = document.querySelector('#css-a-tag')
 const jsATag = document.querySelector('#js-a-tag')
 const quizContainerMain = document.querySelector('.quiz-container')
 
-
 // CSS QUESTIONS //
-
 
 const cssQuestions = [
   {
@@ -60,9 +60,7 @@ const cssQuestions = [
   }
 ];
 
-  
 // HTML QUESTIONS //
-
 const htmlQuestions = [
   {
     question: "What is HTML?",
@@ -100,9 +98,9 @@ const htmlQuestions = [
     correct: "&ltul&gt"
   },
   {
-    question: "What is the correct HTML for creating a hyperlink?",
-    answers: ["&lta url=\"http://www.example.com\"&gtExample&lt/a&gt", "&lta href=\"http://www.example.com\"&gtExample&lt/a&gt", "&lta name=\"http://www.example.com\"&gtExample&lt/a&gt", "&lta&gthttp://www.example.com&lt/a&gt"],
-    correct: "&lta href=\"http://www.example.com\"&gtExample&lt/a&gt"
+    question: "Which of the following elements is used to define a hyperlink in HTML?",
+    answers: ["&lta&gt", "&ltlink&gt", "&lthref&gt", "&lturl&gt"],
+    correct: "&lta&gt"
   },
   {
     question: "Which HTML element defines the title of a document?",
@@ -116,10 +114,7 @@ const htmlQuestions = [
   }
 ];
 
-
-
 // JAVASCRIPT QUESTIONS //
-
 const jsQuestions = [
   {
     question: "Which language is used for web development?",
@@ -175,38 +170,46 @@ const jsQuestions = [
 
 
 
-let currentQuestionIndex = 0;
-let score = 0;
-let questions=[];
+let currentQuestionIndex = 0; // Track the index of the current question//
+let score = 0; // Track the user's score//
+let questions=[]; // Array to hold the selected quiz questions//
 
+// Event listener to run code after the DOM has fully loaded//
 document.addEventListener('DOMContentLoaded', function() {
-  const quizContainer = document.getElementById('quiz-container');
-  const urlParams = new URLSearchParams(window.location.search);
-  const choice = urlParams.get('choice');
 
+  const quizContainer = document.getElementById('quiz-container'); // Quiz container where questions are loaded//
+  const urlParams = new URLSearchParams(window.location.search);// Retrieve the URL parameters//
+  const choice = urlParams.get('choice'); // Get the 'choice' parameter from the URL to determine the selected quiz//
+
+  // Check which quiz was selected and display an appropriate heading//
   if (choice === 'HTML') {
     console.log(choice)
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen HTML Quiz";
-    document.body.appendChild(h3);
+    quizContainerMain.appendChild(h3);
    
   }
+
   if (choice === 'CSS') {
     console.log(choice);
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen CSS Quiz";
-    document.body.appendChild(h3);
+    console.log("CSS")
+    quizContainerMain.appendChild(h3);
     
   }
+
    if(choice === 'JS'){
     console.log(choice)
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen JS Quiz";
-    document.body.appendChild(h3);
+    quizContainerMain.appendChild(h3);
   }
+
+  // Add event listeners to the navigation links to redirect to the appropriate quiz page//
   if (htmlATag) {
     htmlATag.addEventListener('click', function(event) {
       event.preventDefault();
@@ -214,14 +217,15 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = nextPageHtmlUrl;
     });
   } 
+
    if(cssATag){
      cssATag.addEventListener('click',function(event){
       event.preventDefault()
       const nextPageCssUrl = 'quiz.html?choice=CSS'
       window.location.href = nextPageCssUrl;
     })
-  
   }
+
    if(jsATag){
    jsATag.addEventListener('click',function(event){
    event.preventDefault() 
@@ -229,9 +233,8 @@ document.addEventListener('DOMContentLoaded', function() {
    window.location.href = nextPageJsUrl;
   })
   }
-  //edited
 
-
+ // Load the selected quiz questions based on the 'choice' parameter//
   if (choice) {
     switch (choice) {
       case 'HTML':
@@ -244,24 +247,32 @@ document.addEventListener('DOMContentLoaded', function() {
         questions = jsQuestions;
         break;
     }
-    loadQuestion();
+    loadQuestion(); //calling the loadQuestion() Load the first question//
   }
 
-  function decodeHtmlEntities(text) { // to decode the <> entities to compare 
+  //Function to decode HTML entities ( &lt; to < and &gt; to >) to compare with the correct answer//
+  function decodeHtmlEntities(text) {
     const textarea = document.createElement('textarea');
     textarea.innerHTML = text;
     console.log(text)
-    console.log(textarea.value)
+    //console.log(textarea.value)
     return textarea.value;
     
   }
+
+  // Function to load the current question into the quiz container//
   function loadQuestion() {
-    disableBackArrow(); // calling the disablebackArrow function()
+    disableBackArrow(); // Call the disablebackArrow function() to disable the browser back button//
+
+    const storedIndex = localStorage.getItem('currentQuestionIndex'); //retrieving current questionIndex//
+    currentQuestionIndex = storedIndex ? parseInt(storedIndex) : 0; //currentQuestionIndex = integerValue stored in localStorage if condition is true or its zero//
+
     if (currentQuestionIndex >= questions.length) {
-        showResults();
+        showResults(); // Show results if all questions have been answered//
         return;
     }
-    const questionData = questions[currentQuestionIndex];
+    const questionData = questions[currentQuestionIndex]; // Get the current question//
+
     quizContainer.innerHTML = `
         <div class="question">
             <h4 class = "question-head">${questionData.question}</h4>
@@ -274,58 +285,74 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <button id="submit-button">Submit</button>
     `;
-    document.getElementById('submit-button').addEventListener('click', checkAnswer);
+
+    document.getElementById('submit-button').addEventListener('click', checkAnswer);// event listener to submit button//
 }
+
+//function to check if selected answer is write or wrong//
 function checkAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+  const warningModal = new bootstrap.Modal(document.getElementById('warningModal'))
   if (!selectedAnswer) {
-      alert('Please select an answer!');
-      return;
+    document.querySelector('#modal-close-btn').addEventListener('click', function(){
+      warningModal.hide();
+    })
+    warningModal.show();//modal('show'); // Show the Bootstrap modal if no answer is selected
+    return;
   }
-  const correctAnswer = decodeHtmlEntities(questions[currentQuestionIndex].correct);
+  
+  
+  const correctAnswer = decodeHtmlEntities(questions[currentQuestionIndex].correct); // Decode the correct answer//
+
   if (decodeHtmlEntities(selectedAnswer.value) === correctAnswer) {
+    score++; // Increment score if the answer is correct
       score++;
       console.log(score)
+      // label.textContent= ''
   }else{
-    const label = document.createElement('label');
-  label.textContent = 'Wrong Answer'
+    
   
   }
-  currentQuestionIndex++;
-  loadQuestion();
+  
+  currentQuestionIndex++; // Move to the next question
+  loadQuestion(); // Load the next question
+  
+   currentQuestionIndex++;
+   localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
+  loadQuestion(); // Load the next question using loadQuestion()//
 }
 
+// Function to display the final results
+//function to show results of the test//
 function showResults() {
+  lastScoreRecorded(); // Display the last score
 
-  lastScoreRecorded();// calling the lastScoreRecorded function
+  lastScoreRecorded();// Call the lastScoreRecorded function inorder to diplay the last score//
 
   quizContainer.innerHTML = `
       <h3>Quiz Complete!</h3>
       <p>Your score is ${score} out of ${questions.length}</p>
-      <button id="try-again" onclick="window.location.href='index.html'";">Try Again</button>
+      <button id="try-again" onclick="window.location.href='index.html'";">Back to Home</button>
   `;
-  localStorage.setItem('quizScore', score); // storing score in localStorage 
+  localStorage.removeItem('currentQuestionIndex'); //clearing the item//
+  localStorage.setItem('quizScore', score); // store score in localStorage //
 }
  
-// A function to print the last score
+// A function to print the last score //
 function lastScoreRecorded(){
   let lastScore = localStorage.getItem('quizScore');
   console.log(quizContainerMain)
+
+// Insert last score into the quiz container
  quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
   console.log(`Last score ${lastScore}`)
 }
-
-  
 });
 
-//function to disable the browser back arrow when in quiz.html page
+//function to disable the browser back arrow when in quiz.html page //
 function disableBackArrow(){
   history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     };
 }
-
-
-
-

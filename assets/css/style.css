@@ -4,11 +4,9 @@
 }
 
 body {
-
   background-image: url(https://wallpaperaccess.com/full/5277922.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 header {
@@ -19,8 +17,7 @@ header {
   color: #fdd5b1;
 }
 
-h2 
-{
+h2 {
   position: center;
   font-size: 1.5vw;
   color: black;
@@ -28,25 +25,23 @@ h2
   text-transform: uppercase;
 }
 
-h2::before
-{
+h2::before {
   content: attr(data-text);
   position: absolute;
   top: 177px;
   left: 600px;
   width: 8%;
+  width: 8%;
   height: 10%;
-  color:#fdd5b1;
-  -webkit-text-stroke: .02vw red;
+  color: #fdd5b1;
+  -webkit-text-stroke: 0.02vw red;
   border-right: 2px solid #fdd5b1;
   overflow: hidden;
   animation: animate 4s linear infinite;
 }
 
-@keyframes animate
-{
-  0%,50%,100%
-  {
+@keyframes animate {
+  0%, 50%, 100% {
     width: 0;
   }
   70%,90%
@@ -55,48 +50,47 @@ h2::before
   }
 }
 
-/* classes */
+/* Card styling */
 .card {
   margin-top: 200px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 0 2px 4px red;
   padding: 20px;
-  background-color: #fdd5b1;
+  background-color: #fdd5b1 !important;
   max-width: 300px;
-
 }
 
 .card a {
   padding: 40px;
-
   text-decoration: none;
   font-size: xx-large;
   color: black;
 }
 
+/* Container styling */
 .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
+/* Quiz heading styling */
 .quiz-heading {
   text-align: center;
   color: #fdd5b1;
 }
 
+/* Quiz container styling */
 .quiz-container {
-
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
   background: #ffebcd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
-/* ids */
+/* Sub-heading styling */
 #sub-heading {
   text-align: center;
   margin-top: 100px;
@@ -105,12 +99,16 @@ h2::before
   color: #fdd5b1;
 }
 
+/* Button styling */
 #try-again {
   text-align: center;
   font-size: larger;
   color: black;
   background-color: red;
+  color: black;
+  background-color: red;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
+  border: black;
   border: black;
   border-radius: 10px;
   padding: 10px;
