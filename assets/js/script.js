@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let h3 = document.createElement('h3');
     h3.classList.add('quiz-heading');
     h3.textContent = "You have chosen CSS Quiz";
+    console.log("CSS")
     quizContainerMain.appendChild(h3);
     
   }
@@ -291,9 +292,12 @@ document.addEventListener('DOMContentLoaded', function() {
 //function to check if selected answer is write or wrong//
 function checkAnswer() {
   const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-
+  const warningModal = new bootstrap.Modal(document.getElementById('warningModal'))
   if (!selectedAnswer) {
-    $('#warningModal').modal('show'); // Show the Bootstrap modal if no answer is selected
+    document.querySelector('#modal-close-btn').addEventListener('click', function(){
+      warningModal.hide();
+    })
+    warningModal.show();//modal('show'); // Show the Bootstrap modal if no answer is selected
     return;
   }
   
