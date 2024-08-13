@@ -88,6 +88,7 @@ h2::before {
   padding: 2rem;
   background: #ffebcd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Sub-heading styling */
@@ -97,6 +98,14 @@ h2::before {
   text-decoration: underline;
 
   color: #fdd5b1;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin-top: 300px;
+  width: 100%;
 }
 
 /* Button styling */
