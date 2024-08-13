@@ -181,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);// Retrieve the URL parameters//
   const choice = urlParams.get('choice'); // Get the 'choice' parameter from the URL to determine the selected quiz//
 
+  //getting lastScore from localStorage//
+  let lastScore = localStorage.getItem('quizScore'); 
   // Check which quiz was selected and display an appropriate heading//
   if (choice === 'HTML') {
     console.log(choice)
@@ -313,8 +315,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-
-
     currentQuestionIndex++;
     localStorage.setItem('currentQuestionIndex', currentQuestionIndex);
     loadQuestion(); // Load the next question using loadQuestion()//
@@ -337,11 +337,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // A function to print the last score //
   function lastScoreRecorded() {
-    let lastScore = localStorage.getItem('quizScore');
+    //let lastScore = localStorage.getItem('quizScore');
     console.log(quizContainerMain)
-
-    // Insert last score into the quiz container
-    quizContainerMain.insertAdjacentHTML('beforeend', `<label>Last Score was ${lastScore}</label>`)
+    if(lastScore != null){
+      // Insert last score into the quiz container if not null//
+      quizContainerMain.insertAdjacentHTML('beforeend',`<label>Last Score was ${lastScore}</label>`)
+     }else{
+      // Insert a message to container if it is null//
+       quizContainerMain.insertAdjacentHTML('beforeend', `<label>No previous score recorded.</label>`);
+     }
+    
     console.log(`Last score ${lastScore}`)
   }
 });
