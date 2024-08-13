@@ -255,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const textarea = document.createElement('textarea');
     textarea.innerHTML = text;
     console.log(text)
-    //console.log(textarea.value)
     return textarea.value;
 
   }
@@ -321,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadQuestion(); // Load the next question using loadQuestion()//
   }
 
-  // Function to display the final results
   //function to show results of the test//
   function showResults() {
 
