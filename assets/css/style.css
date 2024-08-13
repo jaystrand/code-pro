@@ -25,7 +25,9 @@ h2 {
   -webkit-text-stroke: 0.02vw #1e5a99;
   text-transform: uppercase;
 }
-
+button#submit-button {
+  margin-top: 30px;
+}
 h2::before {
   content: attr(data-text);
   position: absolute;
