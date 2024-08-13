@@ -7,6 +7,7 @@ body {
   background-image: url(https://wallpaperaccess.com/full/5277922.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 header {
@@ -41,11 +42,15 @@ h2::before {
 }
 
 @keyframes animate {
-  0%, 50%, 100% {
+
+  0%,
+  50%,
+  100% {
     width: 0;
   }
-  70%,90%
-  {
+
+  70%,
+  90% {
     width: 12%;
   }
 }
@@ -58,7 +63,28 @@ h2::before {
   box-shadow: 0 2px 4px red;
   padding: 20px;
   background-color: #fdd5b1 !important;
+  width: 100%;
+  /* Allow the card to take up full width of its container */
+  margin-bottom: 20px;
+  /* Add some space between cards */
+  flex: 1;
+  margin: 10px;
   max-width: 300px;
+  /* Limit the width on larger screens */
+  min-width: 100px;
+  /* Ensure a minimum width for smaller screens */
+  height: 100%;
+  /* Make sure all cards have the same height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card a {
@@ -73,6 +99,8 @@ h2::before {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-top: 250px;
+  padding-left: 100px;
 }
 
 /* Quiz heading styling */
@@ -122,11 +150,48 @@ footer {
   border-radius: 10px;
   padding: 10px;
 }
-#submit-button{
+
+#submit-button {
   color: red;
   background-color: green;
   box-shadow: 0 2px 4px rgba(15, 75, 65, 0.758);
   border: #60c5a8;
   border-radius: 10px;
   padding: 10px;
+}
+
+
+
+.card {
+  margin-top: 20px;
+}
+
+.quiz-container {
+  padding: 1rem;
+}
+
+#sub-heading {
+  margin-top: 50px;
+}
+
+footer {
+  margin-top: 165px;
+}
+
+@media (max-width: 576px) {
+  .card {
+    margin-top: 20px;
+    /* Adjust the margin for smaller screens */
+    max-width: 100%;
+    /* Allow the card to be full width on small screens */
+  }
+
+  .container {
+    justify-content: center;
+    padding-left: 0px;
+    margin-left: 0px;
+    border-left: 0px;
+  }
+
+  
 }
