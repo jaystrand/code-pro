@@ -18,11 +18,11 @@ Jermaine Strand, Deepthi Girija Thampi, Yunus Emre Ertas, Coding Bootcamp TAs.
 
 ## Technologies Used
 
-HTML, CSS, JavaScript.
+HTML, CSS, JavaScript, Bootstrap.
 
 ## Resources
 
-Bootstrap, W3Schools.com, Microsoft.com, https://wallpaperaccess.com/full/5277922.jpg
+MDN Reference, https://w3Schools.com/, https://microsoft.com/, https://stackoverflow.com/, https://wallpaperaccess.com/full/5277922.jpg
 
 ## License
 
