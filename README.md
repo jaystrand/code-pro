@@ -2,7 +2,7 @@
 
 ## Website Link
 
-https://hydro8188.github.io/code-pro/
+https://jaystrand.github.io/code-pro/
 
 ## Description
 
